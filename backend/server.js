@@ -63,7 +63,7 @@ io.on("connection", (socket) => {
   socket.on("leaveRoom", (roomCode) => {
     if (!roomCode) return;
     socket.leave(roomCode);
-    socket.to(roomCode).emit("notification", "A user left the room.");
+    io.to(roomCode).emit("notification", "A user left the room.");
   });
 
   socket.on("sendMessage", (payload) => {
