@@ -71,7 +71,7 @@ io.on("connection", (socket) => {
       const { roomCode, username, text, ts } = payload;
       if (!roomCode || !text) return;
       // broadcast to room
-      io.to(roomCode).emit("receiveMessage", { username, text, ts });
+      socket.to(roomCode).emit("receiveMessage", { username, text, ts });
       // save history
       const h = roomHistory.get(roomCode) || [];
       h.push((username ? ("<strong>"+username+"</strong>: ") : "") + text);
